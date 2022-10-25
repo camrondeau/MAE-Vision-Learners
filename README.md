@@ -1,6 +1,6 @@
 # Masked Autoencoders Are Scalable Vision Learners
 
-## Definitions
+## Context
 #### Autoencoders
 - Self-supervised learning method that aims to compress and then decompress the input data
 - An encoder that learns a lower dimension, latent representation of the input data (i.e. key features of an image)
@@ -17,22 +17,22 @@
 - The tokens are patches of an image, instead of words or subwords, but the process of token embedding and positional embedding remain the same, as well as the remaining encoder-decoder architecture
 - Can be used for image classification, object detection, or even question answering about a picture
 
-## Goal
+## Problem
 - The authors wanted to combine those three concepts to prove that masked autoencoders are scalable self-supervised learners for computer vision, particularly vision transformers
-- In summary, self-supervised pretraining occured by inputting a masked image into an autoencoder, and outputting a reconstructed image as similar to the input as possible. 
+- The input to the autoencoder is a masked image, the the output is a reconstructed image that is as similar to the input as possible. 
 
 ![My Image](maevl5.jpg)
 
+- By doing this self-supervised pretraining, the model will learn latent representations of the "visual world" (similar to a NLP model learning semantics)
 - This pre-trained model can then be used for transfer learning for a variety of vision tasks down the road
 
 
-## Summary
+## Summary of Approach
 - Mask random patches of the input image and reconstruct the missing pixels. 
 - Develop asymmetric encoder-decoder architecture
-  - Encoder only operates on the visible, unmasked subset of patches
-  - Decoder reconstructs the original image from the latent representation and mask tokens
-- Using this transformer architecture for this task allows you to train large models efficiently and effectively that are 3x faster and more accurate than convolutional architectures
-- Transfer performance in downstream tasks outperforms supervised pretraining and shows promising scaling behavior.
+  - Encoder only operates on the visible, unmasked subset of patches, outputting a latent representation
+  - Decoder reconstructs the original image from the latent representation and the mask tokens
+
 
 ![My Image](maevl1.jpg)
 
@@ -41,35 +41,33 @@
 #### Masking
   - Divide an image into regular, non-overlapping patches
   - Randomly sample a subset of patches and mask (i.e. remove) the remaining ones
-  - Using a high masking ratio eliminates redundancy, which creates a nontrivial self-supervised task that cannot be easily solved by simply extrapolating from nearby unmasked patches. This is super interesting - actually making the problem harder leads to better and faster performance. The optimal masking ratio for BERT is 15% compared to 75% here.
-  - Therefore, it is scalable, and you can learn high capacity models that generalize very well.
+  - Using a high masking ratio eliminates redundancy, which creates a nontrivial self-supervised task that cannot be easily solved by simply extrapolating from nearby unmasked patches. The optimal masking ratio for BERT is 15% compared to 75% here.
 
 ![My Image](maevl3.jpg)
 
 #### Encoder
-  - Embed patches by a linear projection with added positional embeddings
-  - Then process the resulting set via a series of Transformer blocks
-  - However, our encoder only works on a small subset (25%) of the full image.
-  - Masked patches are removed, no masked patches are required
-  - This allows us to train very large encoders with only a fraction of compute and memory
+  - Only operates on a small subset (25% unmasked patches) of the full image
+  - Embeds patches by a linear projection with added positional embeddings
+  - Then processes the resulting set through a series of Transformer blocks
+  - Since masked patches are removed, no masked tokens are required in the encoding step
+  - This allows us to train very large encoders with only a fraction of compute and memory (scalable)
 #### Decoder
   - The input to the decoder is the full set of tokens consisting of encoded visible patches and mask tokens
   - Each mask token is a learned vector that indicates the precense of a missing patch to be predicted. 
-  - Another series of transformer blocks
+  - Processed through another series of transformer blocks
   - Decoder architecture can be flexibly designed in a manner that is independent of the encoder.
   - Decoders should be lightweight, so the full set of tokens for the reconstructed image are only processed by the decoder, which significantly reduces pre-training time. The decoder that the authors of this paper use has <10% computation per token than then encoder does
-  - Each element in the decoder’s output is a vector of pixel values representing a patch
+  - Each element in the decoder’s output is a vector of predicted pixel values representing a patch
 #### Reconstruction Target
-  - MAE reconstructs the input by predicting the pixel values for each masked patch
   - The decoder’s output is reshaped to form a reconstructed image
   - Use mean squared error to calculate loss between the reconstructed and original image
   - Loss is only computed on masked patches, similar to BERT
 
-![My Image](maevl4.jpg)
-
-
 
 ## Results
+- Overall, using this transformer architecture for this task allows you to train large models efficiently and effectively that are 3x faster and more accurate than convolutional architectures
+- Transfer performance in downstream tasks outperforms supervised pretraining and shows promising scaling behavior.
+
 #### Masking Ratio
 ![My Image](maevl8.jpg)
 
