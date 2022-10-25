@@ -67,16 +67,14 @@
 
 ![My Image](maevl4.jpg)
 
-#### Simple Implementation
-  - First, generate a token for every input patch (by linear projection and an added positional embedding)
-  - Randomly shuffle list of tokens and remove the last 75% of the list
-  - After encoding, append a list of mask tokens to the list of encoded patches, and unshuffle the list
-  - Decoder is applied to this full list
-  - No sparse operations needed
 
 
 ## Results
-![My Image](maevl2.jpg)
+#### Masking Ratio
+![My Image](maevl8.jpg)
+
+#### Mask Sampling Strategy
+![My Image](maevl7.jpg)
 
 
 ## Questions
