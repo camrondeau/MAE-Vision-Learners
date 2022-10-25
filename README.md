@@ -31,10 +31,7 @@
 - Develop asymmetric encoder-decoder architecture
   - Encoder only operates on the visible, unmasked subset of patches
   - Decoder reconstructs the original image from the latent representation and mask tokens
-
-- Masking a high percentage creates a nontrivial self supervised task
 - Using this transformer architecture for this task allows you to train large models efficiently and effectively that are 3x faster and more accurate than convolutional architectures
-- Therefore, it is scalable, and you can learn high capacity models that generalize very well.
 - Transfer performance in downstream tasks outperforms supervised pretraining and shows promising scaling behavior.
 
 ![My Image](maevl1.jpg)
@@ -45,6 +42,10 @@
   - Divide an image into regular, non-overlapping patches
   - Randomly sample a subset of patches and mask (i.e. remove) the remaining ones
   - Using a high masking ratio eliminates redundancy, which creates a nontrivial self-supervised task that cannot be easily solved by simply extrapolating from nearby unmasked patches. This is super interesting - actually making the problem harder leads to better and faster performance. The optimal masking ratio for BERT is 15% compared to 75% here.
+  - Therefore, it is scalable, and you can learn high capacity models that generalize very well.
+
+![My Image](maevl3.jpg)
+
 #### Encoder
   - Embed patches by a linear projection with added positional embeddings
   - Then process the resulting set via a series of Transformer blocks
@@ -53,19 +54,18 @@
   - This allows us to train very large encoders with only a fraction of compute and memory
 #### Decoder
   - The input to the decoder is the full set of tokens consisting of encoded visible patches and mask tokens
-  - Each mask token is a learned vector that indicates the precense of a missing patch to be predicted. Positional embeddings are included on the full set of patches so that the mask tokens can indicate which patches are missing.
+  - Each mask token is a learned vector that indicates the precense of a missing patch to be predicted. 
   - Another series of transformer blocks
-  - Only used during pretraining to reconstruct the image. Only the encoder is used to produce image representations
   - Decoder architecture can be flexibly designed in a manner that is independent of the encoder.
-  - Decoders can be lightweight, so the full set of tokens for the reconstructed image are only processed by the decoder, which significantly reduces pre-training time. The decoder that the authors of this paper use has <10% computation per token than then encoder does
+  - Decoders should be lightweight, so the full set of tokens for the reconstructed image are only processed by the decoder, which significantly reduces pre-training time. The decoder that the authors of this paper use has <10% computation per token than then encoder does
   - Each element in the decoder’s output is a vector of pixel values representing a patch
 #### Reconstruction Target
   - MAE reconstructs the input by predicting the pixel values for each masked patch
-  - The last layer of the decoder is a linear projection whose number of output channels equals the number of pixel values in a patch. 
-  - The decoder’s output is reshaped to form a reconstructed image. 
-  - Our loss function computes the mean squared error (MSE) between the reconstructed and original images in the pixel space. 
-  - We compute the loss only on masked patches, similar to BERT
+  - The decoder’s output is reshaped to form a reconstructed image
+  - Use mean squared error to calculate loss between the reconstructed and original image
+  - Loss is only computed on masked patches, similar to BERT
 
+![My Image](maevl4.jpg)
 
 #### Simple Implementation
   - First, generate a token for every input patch (by linear projection and an added positional embedding)
@@ -73,14 +73,20 @@
   - After encoding, append a list of mask tokens to the list of encoded patches, and unshuffle the list
   - Decoder is applied to this full list
   - No sparse operations needed
- 
-
-
 
 
 ## Questions
-- What are some other differences between masked autoencoders for images and for text?
 - How could this random sampling be performed wiuthout sparse operations?
+- What are some other differences between masked autoencoders for images and for text?
+- What are some applications of masked autoencoding for vision learners?
+
+
+## Resource Links
+- How to Understand Masked Autoencoders (https://arxiv.org/pdf/2202.03670.pdf) (https://arxiv.org/abs/2202.03670)
+- All you need to know about masked autoencoders (https://analyticsindiamag.com/all-you-need-to-know-about-masked-autoencoders/)
+- Vision Transformers (ViT) for Self-Supervised Representation Learning: Masked Autoencoders (https://medium.com/deem-blogs/vision-transformers-vit-for-self-supervised-representation-learning-masked-autoencoders-692e2be2e775)
+- Masked Autoencoders: A PyTorch Implementation (https://github.com/facebookresearch/mae)
+- An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (https://arxiv.org/abs/2010.11929)
 
 
 - Difference between masked autoencoding in vision and language
