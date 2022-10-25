@@ -75,28 +75,35 @@
   - No sparse operations needed
 
 
+## Results
+![My Image](maevl2.jpg)
+
+
 ## Questions
-- How could this random sampling be performed wiuthout sparse operations?
 - What are some other differences between masked autoencoders for images and for text?
 - What are some applications of masked autoencoding for vision learners?
 
 
 ## Resource Links
-- How to Understand Masked Autoencoders (https://arxiv.org/pdf/2202.03670.pdf) (https://arxiv.org/abs/2202.03670)
+- How to Understand Masked Autoencoders (https://arxiv.org/abs/2202.03670)
 - All you need to know about masked autoencoders (https://analyticsindiamag.com/all-you-need-to-know-about-masked-autoencoders/)
 - Vision Transformers (ViT) for Self-Supervised Representation Learning: Masked Autoencoders (https://medium.com/deem-blogs/vision-transformers-vit-for-self-supervised-representation-learning-masked-autoencoders-692e2be2e775)
 - Masked Autoencoders: A PyTorch Implementation (https://github.com/facebookresearch/mae)
 - An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale (https://arxiv.org/abs/2010.11929)
 
 
+## Question Answers
+#### Question 1
 - Difference between masked autoencoding in vision and language
   - Language is information dense and requires sophisticated language understanding to predict missing words or sentences. Images have spacial redundancy and missing patches can be recovered with little high level understanding. To overcome this and encourage learning useful features, you mask a very high portion of random patches of an image. This reduces redundancy and requires a holistic understandiung
   - The decoder reconstructs pixels for images, which have lower semantic meaning, and reconstructs words for text, which have very high semantic meaning.
+#### Question 2
+- What are some applications of masked autoencoding for vision learners?
+  - Masked autoencoding is mostly used for pre-training a visual transformer
+  - However, there may be some tasks where reconstructing a partial image is useful, such as medical imaging or facial recognition
+  - The pretraining process of masked autoencoding allows for transfer learning on a variety of different vision tasks as well
 
 
 
 
 
-
-![My Image](maevl1.jpg)
-![My Image](maevl2.jpg)
