@@ -1,14 +1,40 @@
 # Masked Autoencoders Are Scalable Vision Learners
 
+## Definitions
+### Autoencoders
+- Self-supervised learning method that aims to compress and then decompress the input data
+- An encoder that learns a lower dimension, latent representation of the input data (i.e. key features of an image)
+- A decoder that reconstructs the encoded representation into an output that resembles the input as closely as possible
+- Validation is measured by comparing the output data with the original input data
+- Used in pretraining Transformers such as BERT
+### Masking
+- Process of hiding part of the input data
+- Different than the Mask parameter in the Transformer psuedocode
+- BERT masked language modeling - you mask a word or phrase in your input, and try to predict that missing text
+- For images, you can mask patches of the input image
+### Vision Transformer (ViT)
+- Uses transformer architecture that is extremely similar to the NLP transformers we have studied
+- The tokens are patches of an image, instead of words or subwords, but the process of token embedding and positional embedding remain the same, as well as the remaining encoder-decoder architecture
+- Can be used for image classification, object detection, or even question answering about a picture
+
+## Goal
+- The authors wanted to combine those three concepts to prove that masked autoencoders are scalable self-supervised learners for computer vision, particularly vision transformers
+- In summary, self-cupervised pretraining occured by inputting a masked image into an autoencoder, and outputting a reconstructed image as similar to the input as possible. 
+- This pre-trained model can then be used for transfer learning for a variety of vision tasks down the road
+
+
+
+
+
+
+
+
+
+
+
+
 ## Current Computer Vision Approaches
-- In computer vision, convolutional architectures are dominant
-- There have been attempts to try to combine CNN's and self-attention
-- Apply standard Transformer architecture directly to images
-  - Split an image into patches and provide the sequence of linear embeddings for the patches
-  - Image patches are treated the same way as tokens in an NLP application
-  - Then train the model on image classification in supervised fashion
-  - When trained on insufficient amounts of data, the models could not generalize well so performance was low.
-  - However, when trained on larger datasets (14M-300M images), ViT equals or beats state of the art convolutional architectures
+
 
 ## Summary: 
 - Mask random patches of the input image and reconstruct the missing pixels. 
