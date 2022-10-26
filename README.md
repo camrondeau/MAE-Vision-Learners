@@ -7,6 +7,9 @@
 - A decoder that reconstructs the encoded representation into an output that resembles the input as closely as possible
 - Validation is measured by comparing the output data with the original input data
 - Used in pretraining Transformers, such as BERT, which helps the model understand semantics in NLP or visual representations in computer vision.
+
+![My Image](maevl9.png)
+
 #### Masking
 - Process of hiding part of the input data
 - Different than the Mask parameter in the Transformer psuedocode
