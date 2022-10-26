@@ -68,7 +68,7 @@
   - Loss is only computed on masked patches, similar to BERT
 
 ## Coding Example
-https://colab.research.google.com/drive/1mOGN_wudDdC5C43hyZQwrFrC8n_X4Yin#scrollTo=12251916-7bf0-4ee5-ba7d-3dea4441d0a4
+https://github.com/camrondeau/MAE-Vision-Learners/blob/8bcc888130c775563d30c77fb6170ce0cd819e76/ViTMAE_code_example.ipynb
 
 ## Results
 #### Masking Ratio
