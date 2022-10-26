@@ -51,6 +51,7 @@
   - This allows us to train very large encoders with only a fraction of compute and memory (scalable)
   - Encoder embeds unmasked patches by a linear projection with added positional embeddings
   - Then processes the resulting set through a series of Transformer blocks to create a latent representation 
+![My Image](maevl10.jpg)
 
 #### Decoder
   - The input to the decoder is the full set of tokens consisting of encoded visible patches and mask tokens
@@ -59,14 +60,12 @@
   - Each element in the decoder’s output is a vector of predicted pixel values representing a masked patch
   - Decoders are operating on the full set of image patches, they should be lightweight in order to reduce pretraining time. 
     - In the paper, the decoder the authors use has <10% computation per token than the encoder does. 
+![My Image](maevl11.jpg)
 
 #### Reconstruction Target
   - The decoder’s output is reshaped to form a reconstructed image
   - Use mean squared error to calculate distance between the reconstructed and original image
   - Loss is only computed on masked patches, similar to BERT
-
-### Visualization
-![My Image](maevl4.jpg)
 
 ## Results
 #### Masking Ratio
