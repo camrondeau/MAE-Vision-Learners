@@ -62,6 +62,7 @@
   - Use mean squared error to calculate distance between the reconstructed and original image
   - Loss is only computed on masked patches, similar to BERT
 
+### Visualization
 ![My Image](maevl4.jpg)
 
 ## Results
