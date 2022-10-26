@@ -77,7 +77,9 @@
 
 
 ## Questions
+#### Question 1
 - What are some other differences between masked autoencoders for images and for text?
+#### Question 2
 - What are some applications of masked autoencoding for vision learners?
 
 
