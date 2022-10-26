@@ -67,6 +67,9 @@
   - Use mean squared error to calculate distance between the reconstructed and original image
   - Loss is only computed on masked patches, similar to BERT
 
+## Coding Example
+https://colab.research.google.com/drive/1mOGN_wudDdC5C43hyZQwrFrC8n_X4Yin#scrollTo=12251916-7bf0-4ee5-ba7d-3dea4441d0a4
+
 ## Results
 #### Masking Ratio
 ![My Image](maevl8.jpg)
