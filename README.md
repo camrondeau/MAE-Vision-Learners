@@ -8,7 +8,7 @@
 - Validation is measured by comparing the output data with the original input data
 - Used in pretraining Transformers, such as BERT, which helps the model understand semantics in NLP or visual representations in computer vision.
 
-![My Image](maevl9.png)
+![My Image](Images/maevl9.png)
 
 #### Masking
 - Process of hiding part of the input data
@@ -44,14 +44,14 @@
   - Using a high masking ratio eliminates redundancy, which creates a nontrivial self-supervised task that cannot be easily solved by simply extrapolating from nearby unmasked patches
   - Forces the model to learn the image representations more thoroughly.
 
-![My Image](maevl3.jpg)
+![My Image](Images/maevl3.jpg)
 
 #### Encoder
   - Only operates on a small subset (25%) of the full image
   - This allows us to train very large encoders with only a fraction of compute and memory (scalable)
   - Encoder embeds unmasked patches by a linear projection with added positional embeddings
   - Then processes the resulting set through a series of Transformer blocks to create a latent representation 
-![My Image](maevl10.jpg)
+![My Image](Images/maevl10.jpg)
 
 #### Decoder
   - The input to the decoder is the full set of tokens consisting of encoded visible patches and mask tokens
@@ -60,7 +60,7 @@
   - Each element in the decoder’s output is a vector of predicted pixel values representing a masked patch
   - Decoders are operating on the full set of image patches, they should be lightweight in order to reduce pretraining time. 
     - In the paper, the decoder the authors use has <10% computation per token than the encoder does. 
-![My Image](maevl11.jpg)
+![My Image](Images/maevl11.jpg)
 
 #### Reconstruction Target
   - The decoder’s output is reshaped to form a reconstructed image
@@ -72,10 +72,10 @@ https://github.com/camrondeau/MAE-Vision-Learners/blob/8bcc888130c775563d30c77fb
 
 ## Results
 #### Masking Ratio
-![My Image](maevl8.jpg)
+![My Image](Images/maevl8.jpg)
 
 #### Mask Sampling Strategy
-![My Image](maevl7.jpg)
+![My Image](Images/maevl7.jpg)
 
 - Overall, using this transformer architecture for this task allows you to train large models efficiently and effectively that are 3x faster and more accurate than convolutional architectures
 - Transfer performance in downstream tasks outperforms supervised pretraining and shows promising scaling behavior.
