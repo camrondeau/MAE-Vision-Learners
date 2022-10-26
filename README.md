@@ -18,7 +18,7 @@
 #### Vision Transformer (ViT)
 - Uses transformer architecture that is extremely similar to the NLP transformers we have studied
 - The tokens are patches of an image, instead of words or subwords, but the process of token embedding and positional embedding remain the same, as well as the remaining encoder-decoder architecture
-- Can be used for image classification, object detection, or even question answering about a picture
+- Can be used for image classification, object detection, image segmentation, etc.
 
 ## Problem
 - The authors wanted to combine those three concepts to prove that masked autoencoders are scalable self-supervised learners for computer vision, particularly vision transformers
