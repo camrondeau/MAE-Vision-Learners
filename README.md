@@ -88,6 +88,10 @@ https://github.com/camrondeau/MAE-Vision-Learners/blob/8bcc888130c775563d30c77fb
 - What are some applications of masked autoencoding (i.e. image reconstructing) for vision learners?
 
 
+## Video Overview
+https://youtu.be/KWspL0X9aMk
+
+
 ## Resource Links
 - How to Understand Masked Autoencoders (https://arxiv.org/abs/2202.03670)
 - All you need to know about masked autoencoders (https://analyticsindiamag.com/all-you-need-to-know-about-masked-autoencoders/)
