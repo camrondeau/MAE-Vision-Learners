@@ -33,7 +33,7 @@
   - Encoder only operates on the visible, unmasked subset of patches, outputting a latent representation
   - Decoder reconstructs the original image from the latent representation and the mask tokens
 
-![My Image](maevl1.jpg)
+![My Image](Images/maevl1.jpg)
 
 
 ## Architecture
