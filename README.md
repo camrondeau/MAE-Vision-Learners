@@ -65,14 +65,14 @@
 ![My Image](maevl4.jpg)
 
 ## Results
-- Overall, using this transformer architecture for this task allows you to train large models efficiently and effectively that are 3x faster and more accurate than convolutional architectures
-- Transfer performance in downstream tasks outperforms supervised pretraining and shows promising scaling behavior.
-
 #### Masking Ratio
 ![My Image](maevl8.jpg)
 
 #### Mask Sampling Strategy
 ![My Image](maevl7.jpg)
+
+- Overall, using this transformer architecture for this task allows you to train large models efficiently and effectively that are 3x faster and more accurate than convolutional architectures
+- Transfer performance in downstream tasks outperforms supervised pretraining and shows promising scaling behavior.
 
 
 ## Questions
